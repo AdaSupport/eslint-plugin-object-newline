@@ -203,5 +203,13 @@ ruleTester.run("enforce", rule, {
       }],
       errors: [{ messageId: "mustSplitMany" }],
     },
+    {
+      code: "const a = ({a, b = 1, c, d, e}: P) => null;",
+      output: "const a = ({\n  a,\n  b = 1,\n  c,\n  d,\n  e,\n}: P) => null;",
+      options: [{
+        items: 4,
+      }],
+      errors: [{ messageId: "mustSplitMany" }],
+    },
   ],
 });
