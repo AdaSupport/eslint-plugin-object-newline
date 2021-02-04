@@ -24,7 +24,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "github:SeinopSys/eslint-plugin-import-newlines"
+    "url": "github:AdaSupport/eslint-plugin-object-newline"
   },
   "bin": {
     "import-linter": "lib/index.js"
