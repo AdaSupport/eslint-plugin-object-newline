@@ -11,6 +11,7 @@
     "airbnb-base",
     "plugin:eslint-plugin/recommended"
   ],
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 11
   },

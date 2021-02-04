@@ -44,7 +44,9 @@
     "test": "mocha",
     "test:watch": "mocha --watch"
   },
-  "dependencies": {},
+  "dependencies": {
+    "babel-eslint": "^10.1.0"
+  },
   "devDependencies": {
     "eslint": "^7.5.0",
     "eslint-config-airbnb-base": "^14.2.0",

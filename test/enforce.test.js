@@ -3,6 +3,7 @@ const { RuleTester } = require("eslint");
 const rule = require("../lib/enforce.js");
 
 const ruleTester = new RuleTester({
+  parser: require.resolve("babel-eslint"),
   parserOptions: {
     ecmaVersion: 2015,
     sourceType: "module",
@@ -17,8 +18,7 @@ ruleTester.run("enforce", rule, {
       code: "const { a, b, c, d } = test",
     },
     {
-      code: "const { a, b, c, d } = test",
-      options: [6],
+      code: "const { a: {b, c} } = test",
     },
     {
       code: "const { a, b, c, d } = test",
@@ -195,13 +195,13 @@ ruleTester.run("enforce", rule, {
       errors: [{ messageId: "mustSplitMany" }],
     },
     {
-      code: "const {\n} = test;",
-      output: "const {} = test;",
+      code: "const { a: {}, d: f, e, g, h }: Type = test;",
+      output: "const {\n  a: {},\n  d: f,\n  e,\n  g,\n  h,\n}: Type = test;",
       options: [{
         items: 4,
         "max-len": 140,
       }],
-      errors: [{ messageId: "mustNotSplit" }],
+      errors: [{ messageId: "mustSplitMany" }],
     },
   ],
 });
