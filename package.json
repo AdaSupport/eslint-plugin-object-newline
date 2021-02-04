@@ -1,0 +1,75 @@
+{
+  "name": "eslint-plugin-object-newline",
+  "version": "1.0.0",
+  "description": "ESLint plugin to enforce newlines in ES6 object pattern",
+  "main": "lib/index.js",
+  "author": {
+    "name": "Ada",
+    "email": "seva@ada.support",
+    "url": "https://ada.cx"
+  },
+  "private": false,
+  "contributors": [
+    {
+      "name": "Seva",
+      "email": "seva.rubbo@gmail.com"
+    }
+  ],
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "github:SeinopSys/eslint-plugin-import-newlines"
+  },
+  "bin": {
+    "import-linter": "lib/index.js"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "keywords": [
+    "eslint",
+    "eslint-plugin",
+    "eslintplugin",
+    "lint",
+    "import"
+  ],
+  "scripts": {
+    "test": "mocha",
+    "test:watch": "mocha --watch"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-eslint-plugin": "^2.3.0",
+    "eslint-plugin-import": "^2.22.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "mocha": "^8.1.0"
+  },
+  "peerDependencies": {
+    "eslint": ">=6.0.0"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test"
+    }
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix"
+  },
+  "np": {
+    "releaseDraft": false
+  }
+}
