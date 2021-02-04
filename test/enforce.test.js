@@ -212,13 +212,22 @@ ruleTester.run("enforce", rule, {
       errors: [{ messageId: "mustSplitMany" }],
     },
     {
-      code: "interface Props {\n a: string;\n};\nexport function AvatarNew({\nsize = \"default\"\n}: Props) {}",
-      output: "interface Props {\n a: string;\n};\nexport function AvatarNew({ size = \"default\" }: Props) {}",
+      code: "interface Props {\n a: string;\nb: number\n};\nexport function AvatarNew({\nsize = \"default\"\n}: Props) {}",
+      output: "interface Props {\n a: string;\nb: number\n};\nexport function AvatarNew({ size = \"default\" }: Props) {}",
       options: [{
         items: 4,
         "max-len": 100,
       }],
       errors: [{ messageId: "mustNotSplit" }],
+    },
+    {
+      code: "const {g: {veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty}} = props",
+      output: "const {\n  g: {veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty},\n} = props",
+      options: [{
+        items: 4,
+        "max-len": 100,
+      }],
+      errors: [{ messageId: "mustSplitLong" }, { messageId: "mustSplitLong" }],
     },
   ],
 });
