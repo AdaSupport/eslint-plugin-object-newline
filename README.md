@@ -1,4 +1,4 @@
-# eslint-plugin-object-newline
+# @ada-support/eslint-plugin-object-newline
 
 ESLint plugin to enforce newlines in ES6 object pattern.
 
@@ -7,13 +7,13 @@ There is only one rule in this plugin which will report when there are more than
 ## Installation
 
 ```
-$ npm install eslint-plugin-object-newline --save-dev
+$ npm install @ada-support/eslint-plugin-object-newline --save-dev
 ```
 
 Or
 
 ```
-$ yarn add eslint-plugin-object-newline -D
+$ yarn add @ada-support/eslint-plugin-object-newline -D
 ```
 
 ## Usage
