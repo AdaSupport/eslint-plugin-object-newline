@@ -185,5 +185,23 @@ ruleTester.run("enforce", rule, {
       }],
       errors: [{ messageId: "mustSplitMany" }],
     },
+    {
+      code: "const { a: {}, d: f, e, g, h } = test;",
+      output: "const {\n  a: {},\n  d: f,\n  e,\n  g,\n  h,\n} = test;",
+      options: [{
+        items: 4,
+        "max-len": 140,
+      }],
+      errors: [{ messageId: "mustSplitMany" }],
+    },
+    {
+      code: "const {\n} = test;",
+      output: "const {} = test;",
+      options: [{
+        items: 4,
+        "max-len": 140,
+      }],
+      errors: [{ messageId: "mustNotSplit" }],
+    },
   ],
 });
