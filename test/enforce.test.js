@@ -176,5 +176,14 @@ ruleTester.run("enforce", rule, {
       }],
       errors: [{ messageId: "mustSplitLong" }],
     },
+    {
+      code: "const { a: {b, c}, d: f, e, g, h } = test;",
+      output: "const {\n  a: {b, c},\n  d: f,\n  e,\n  g,\n  h,\n} = test;",
+      options: [{
+        items: 4,
+        "max-len": 140,
+      }],
+      errors: [{ messageId: "mustSplitMany" }],
+    },
   ],
 });
