@@ -1,12 +1,10 @@
-# eslint-plugin-object-newline  [![Build Status](https://travis-ci.com/AdaSupport/eslint-plugin-object-newline.svg?branch=master)](https://travis-ci.com/AdaSupport/eslint-plugin-object-newline)
+# eslint-plugin-object-newline
 
 ESLint plugin to enforce newlines in ES6 object pattern.
 
 There is only one rule in this plugin which will report when there are more than 4 values in a line by default, and if there are less it will report when the object pattern is not on a single line.
 
 ## Installation
-
-You'll first need to install [ESLint](http://eslint.org):
 
 ```
 $ npm install eslint-plugin-object-newline --save-dev
