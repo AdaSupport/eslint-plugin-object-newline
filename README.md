@@ -1,8 +1,8 @@
-# eslint-plugin-import-newlines
+# eslint-plugin-object-newline
 
-ESLint plugin for enforcing newlines in ES6 import statements past a certain number of items.
+ESLint plugin to enforce newlines in ES6 object pattern.
 
-There is only one rule in this plugin which will report when there are more than 4 values in a line by default, and if there are less it will report when the import is not on a single line.
+There is only one rule in this plugin which will report when there are more than 4 values in a line by default, and if there are less it will report when the object pattern is not on a single line.
 
 ## Installation
 
@@ -12,22 +12,26 @@ You'll first need to install [ESLint](http://eslint.org):
 $ npm i eslint --save-dev
 ```
 
-Next, install `eslint-plugin-import-newlines`:
+Next, install `eslint-plugin-object-newline`:
 
 ```
-$ npm install eslint-plugin-import-newlines --save-dev
+$ npm install eslint-plugin-object-newline --save-dev
 ```
 
-**Note:** If you installed ESLint globally (using the `-g` flag) then you must also install `eslint-plugin-import-newlines` globally.
+Or
+
+```
+$ yarn add eslint-plugin-object-newline -D
+```
 
 ## Usage
 
-Add `import-newlines` to the plugins section of your `.eslintrc` configuration file.
+Add `object-newline` to the plugins section of your `.eslintrc` configuration file.
 
 ```json
 {
     "plugins": [
-        "import-newlines"
+        "object-newline"
     ]
 }
 ```
@@ -37,7 +41,7 @@ Then add the rule in the rules section.
 ```json
 {
     "rules": {
-        "import-newlines/enforce": "error"
+        "object-newline/enforce": "error"
     }
 }
 ```
@@ -50,7 +54,7 @@ The first and most readable way is to use an object which allows you to specify 
   {
       "rules": {
           "max-len": ["error", 100],
-          "import-newlines/enforce": [
+          "object-newline/enforce": [
               "error",
               {
                   "items": 2,
@@ -68,7 +72,7 @@ To specify `items` as **6**:
   ```json
   {
       "rules": {
-          "import-newlines/enforce": [
+          "object-newline/enforce": [
               "error",
               6
           ]
@@ -82,7 +86,7 @@ To specify `items` as **4** and `max-len` as **120**:
   {
       "rules": {
           "max-len": ["error", 120],
-          "import-newlines/enforce": [
+          "object-newline/enforce": [
               "error",
               4,
               120

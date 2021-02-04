@@ -155,7 +155,6 @@ ruleTester.run("enforce", rule, {
       options: [{
         items: 4,
         "max-len": 140,
-        semi: false,
       }],
       errors: [{ messageId: "mustNotSplit" }],
     },
@@ -165,7 +164,6 @@ ruleTester.run("enforce", rule, {
       options: [{
         items: 4,
         "max-len": 140,
-        semi: true,
       }],
       errors: [{ messageId: "mustSplitLong" }],
     },
@@ -175,7 +173,6 @@ ruleTester.run("enforce", rule, {
       options: [{
         items: 4,
         "max-len": 140,
-        semi: true,
       }],
       errors: [{ messageId: "mustSplitLong" }],
     },
