@@ -242,7 +242,7 @@ const f = () => {
     // Hello
   a, b, // Hi
   // Ccc
-  c: { x, y, z }
+  c: { x, y, z }, ...xx
   } = test;
 }
 `,
@@ -259,6 +259,7 @@ const f = () => {
     b, // Hi
     // Ccc
     c: { x, y, z },
+    ...xx
   } = test;
 }
 `,
