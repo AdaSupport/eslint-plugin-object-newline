@@ -212,6 +212,14 @@ ruleTester.run("enforce", rule, {
       errors: [{ messageId: "mustSplitMany" }],
     },
     {
+      code: "const a = ({a, b: alias = 1, c, d, e}: P) => null;",
+      output: "const a = ({\n  a,\n  b: alias = 1,\n  c,\n  d,\n  e,\n}: P) => null;",
+      options: [{
+        items: 4,
+      }],
+      errors: [{ messageId: "mustSplitMany" }],
+    },
+    {
       code: "interface Props {\n a: string;\nb: number\n};\nexport function AvatarNew({\nsize = \"default\"\n}: Props) {}",
       output: "interface Props {\n a: string;\nb: number\n};\nexport function AvatarNew({ size = \"default\" }: Props) {}",
       options: [{
