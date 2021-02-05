@@ -90,6 +90,19 @@ ruleTester.run("enforce", rule, {
         items: 1,
       }],
     },
+    {
+      code: `
+const f = ({
+  onClick,
+  item,
+  index,
+  ...rest
+} = {}) => null
+      `,
+      options: [{
+        items: 3,
+      }],
+    },
   ],
 
   invalid: [
@@ -266,6 +279,26 @@ const f = () => {
       options: [{
         items: 4,
         "max-len": 100,
+      }],
+      errors: [{ messageId: "limitLineCount" }],
+    },
+    {
+      code: `
+const f = ({ onClick,
+  item,
+  index, ...rest
+} = {}) => null
+`,
+      output: `
+const f = ({
+  onClick,
+  item,
+  index,
+  ...rest
+} = {}) => null
+`,
+      options: [{
+        items: 3,
       }],
       errors: [{ messageId: "limitLineCount" }],
     },
