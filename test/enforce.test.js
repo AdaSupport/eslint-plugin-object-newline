@@ -220,6 +220,35 @@ ruleTester.run("enforce", rule, {
       errors: [{ messageId: "mustSplitMany" }],
     },
     {
+      code: `
+const f = () => {
+  return ({ a, b,
+    c,
+  }: {
+    a: number;
+    b: boolean;
+    c: number;
+  }) => null
+}`,
+      output: (`
+const f = () => {
+  return ({
+  a,
+  b,
+  c,
+}: {
+    a: number;
+    b: boolean;
+    c: number;
+  }) => null
+}`
+      ),
+      options: [{
+        items: 2,
+      }],
+      errors: [{ messageId: "limitLineCount" }],
+    },
+    {
       code: "interface Props {\n a: string;\nb: number\n};\nexport function AvatarNew({\nsize = \"default\"\n}: Props) {}",
       output: "interface Props {\n a: string;\nb: number\n};\nexport function AvatarNew({ size = \"default\" }: Props) {}",
       options: [{
