@@ -94,12 +94,6 @@ ruleTester.run("enforce", rule, {
 
   invalid: [
     {
-      code: "const {\na,\nb\n} = test",
-      output: "const { a, b } = test",
-      options: [4],
-      errors: [{ messageId: "mustNotSplit" }],
-    },
-    {
       code: "let { a, b, c, d } = test",
       output: "let {\n  a,\n  b,\n  c,\n  d,\n} = test",
       options: [1],
@@ -112,18 +106,6 @@ ruleTester.run("enforce", rule, {
         items: 1,
       }],
       errors: [{ messageId: "mustSplitMany" }],
-    },
-    {
-      code: "const { \na,\n\nb,\n\n\nc,\n\n\nd,\n\n\n\ne\n} = test",
-      output: "const {\n  a,\n  b,\n  c,\n  d,\n  e,\n} = test",
-      options: [4],
-      errors: [{ messageId: "noBlankBetween" }],
-    },
-    {
-      code: "const { a,\n\n\nb } = test",
-      output: "const {\n  a,\n  b,\n} = test",
-      options: [1],
-      errors: [{ messageId: "noBlankBetween" }],
     },
     {
       code: "const {\n\na,\nb\n\n\n} = test",
@@ -148,15 +130,6 @@ ruleTester.run("enforce", rule, {
       output: "const {\n  aaaaaaaaaa,\n  bbbbbbbbbb,\n  cccccccccc,\n  dddddddddd,\n} = test",
       options: [4, 50],
       errors: [{ messageId: "mustSplitLong" }],
-    },
-    {
-      code: "const {\n    aaaaaaaaaaa,\n    aaaaaaaaaaaaaaaaaaa,\n    aaaaaaaaaaaaa\n} = aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-      output: "const { aaaaaaaaaaa, aaaaaaaaaaaaaaaaaaa, aaaaaaaaaaaaa } = aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-      options: [{
-        items: 4,
-        "max-len": 140,
-      }],
-      errors: [{ messageId: "mustNotSplit" }],
     },
     {
       code: "const { aaaaaaaaaaa, aaaaaaaaaaaaaaaaaaa, aaaaaaaaaaaaa } = aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;",
@@ -233,10 +206,10 @@ const f = () => {
       output: (`
 const f = () => {
   return ({
-  a,
-  b,
-  c,
-}: {
+    a,
+    b,
+    c,
+  }: {
     a: number;
     b: boolean;
     c: number;
@@ -249,15 +222,6 @@ const f = () => {
       errors: [{ messageId: "limitLineCount" }],
     },
     {
-      code: "interface Props {\n a: string;\nb: number\n};\nexport function AvatarNew({\nsize = \"default\"\n}: Props) {}",
-      output: "interface Props {\n a: string;\nb: number\n};\nexport function AvatarNew({ size = \"default\" }: Props) {}",
-      options: [{
-        items: 4,
-        "max-len": 100,
-      }],
-      errors: [{ messageId: "mustNotSplit" }],
-    },
-    {
       code: "const {g: {veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty}} = props",
       output: "const {\n  g: {veryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryLongProperty},\n} = props",
       options: [{
@@ -265,6 +229,44 @@ const f = () => {
         "max-len": 100,
       }],
       errors: [{ messageId: "mustSplitLong" }, { messageId: "mustSplitLong" }],
+    },
+    {
+      code: `
+const f = () => {
+  const {
+  // Zzz1
+  z: D, // Zzz2
+  // Zzz3
+  // Zzz4
+  x: Y, // Yooo
+    // Hello
+  a, b, // Hi
+  // Ccc
+  c: { x, y, z }
+  } = test;
+}
+`,
+      output: `
+const f = () => {
+  const {
+    // Zzz1
+    z: D, // Zzz2
+    // Zzz3
+    // Zzz4
+    x: Y, // Yooo
+    // Hello
+    a,
+    b, // Hi
+    // Ccc
+    c: { x, y, z },
+  } = test;
+}
+`,
+      options: [{
+        items: 4,
+        "max-len": 100,
+      }],
+      errors: [{ messageId: "limitLineCount" }],
     },
   ],
 });

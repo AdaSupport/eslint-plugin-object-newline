@@ -2,7 +2,7 @@
 
 ESLint plugin to enforce newlines in ES6 object pattern.
 
-There is only one rule in this plugin which will report when there are more than 4 values in a line by default, and if there are less it will report when the object pattern is not on a single line.
+There is only one rule in this plugin which will report when there are more than 4 values in a line by default.
 
 ## Installation
 
@@ -59,9 +59,7 @@ The first and most readable way is to use an object which allows you to specify 
 
 #### `items` [number] (default: `4`)
 
-Specifies the maximum number of items before the plugin requires breaking up the `import` to multiple lines. If there are exactly this many or fewer items, then the plugin will make sure the import stays on one line unless it would violate the `max-len` option. More items than this number will always be split onto multiple lines.
-
-Note that the plugin simply inserts newline characters after each token in the import when splitting, and the fix output never includes leading tabs or spaces. To have consistent indentation, be sure to use the built-in `indent` rule.
+Specifies the maximum number of items before the plugin requires breaking up the `import` to multiple lines.
 
 #### `max-len` [number] (default: `Infinity`)
 
