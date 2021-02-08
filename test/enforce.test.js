@@ -133,6 +133,17 @@ const f = ({
         items: 3,
       }],
     },
+    {
+      code: `
+    const {
+      /** @type {Type} */
+      a,
+    } = obj;
+`,
+      options: [{
+        items: 3,
+      }],
+    },
   ],
 
   invalid: [
@@ -346,6 +357,25 @@ const {
   // Foo
   b,
   c,
+} = test;
+`,
+      options: [{
+        items: 2,
+      }],
+      errors: [{ messageId: "limitLineCount" }],
+    },
+    {
+      code: `
+const {
+  /** @type {Type} */
+  a, b,
+} = test;
+`,
+      output: `
+const {
+  /** @type {Type} */
+  a,
+  b,
 } = test;
 `,
       options: [{
