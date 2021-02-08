@@ -45,10 +45,11 @@
     "test:watch": "mocha --watch"
   },
   "dependencies": {
+    "@typescript-eslint/parser": "^4.14.2",
     "babel-eslint": "^10.1.0"
   },
   "devDependencies": {
-    "eslint": "^7.5.0",
+    "eslint": "^7.18.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-eslint-plugin": "^2.3.0",
     "eslint-plugin-import": "^2.22.0",
@@ -57,7 +58,7 @@
     "mocha": "^8.1.0"
   },
   "peerDependencies": {
-    "eslint": ">=6.0.0"
+    "eslint": "^7.19.0"
   },
   "engines": {
     "node": ">=10.0.0"

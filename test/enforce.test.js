@@ -2,17 +2,9 @@
 const { RuleTester } = require("eslint");
 const rule = require("../lib/enforce.js");
 
-const ruleTester = new RuleTester({
-  parser: require.resolve("babel-eslint"),
-  parserOptions: {
-    ecmaVersion: 2015,
-    sourceType: "module",
-  },
-});
-
 const repeatString = (str, times) => [...new Array(times + 1)].join(str);
 
-ruleTester.run("enforce", rule, {
+const tests = {
   valid: [
     {
       code: "const { a, b, c, d } = test",
@@ -138,6 +130,21 @@ const f = ({
     const {
       /** @type {Type} */
       a,
+    } = obj;
+`,
+      options: [{
+        items: 3,
+      }],
+    },
+    {
+      code: `
+    const {
+      a,
+      // Comment
+      b,
+      c,
+      // Comment
+      d
     } = obj;
 `,
       options: [{
@@ -407,4 +414,24 @@ const f = () => {
       errors: [{ messageId: "mustSplitLong" }],
     },
   ],
+};
+
+const ruleTesterBabelParser = new RuleTester({
+  parser: require.resolve("babel-eslint"),
+  parserOptions: {
+    ecmaVersion: 2015,
+    sourceType: "module",
+  },
 });
+
+ruleTesterBabelParser.run("enforce", rule, tests);
+
+const ruleTesterTypescriptParser = new RuleTester({
+  parser: require.resolve("@typescript-eslint/parser"),
+  parserOptions: {
+    ecmaVersion: 2015,
+    sourceType: "module",
+  },
+});
+
+ruleTesterTypescriptParser.run("enforce", rule, tests);
