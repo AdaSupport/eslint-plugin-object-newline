@@ -59,11 +59,11 @@ The first and most readable way is to use an object which allows you to specify 
 
 #### `items` [number] (default: `4`)
 
-Specifies the maximum number of items before the plugin requires breaking up the `import` to multiple lines.
+Specifies the maximum number of items before the plugin requires breaking items to multiple lines.
 
 #### `max-len` [number] (default: `Infinity`)
 
-Specifies the maximum length for source code lines in your project. This allows the plugin to prevent quick fixes that would cause your code to violate this limit from being applied. The rule will also automatically split import lines for you should they exceed the limit, which works great as an automatic fix for the ESLint built-in `max-len` rule (which doesn't have any quick fixes out of the box at the time of writing) for your imports. It's highly recommended you keep this option's value in sync with what you use for the aforementioned rule for best results.
+Specifies the maximum length for source code lines in your project. This allows the plugin to prevent quick fixes that would cause your code to violate this limit from being applied. The rule will also automatically split lines for you should they exceed the limit.
 
 ### Testing
 
