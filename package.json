@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-object-pattern-newline",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "ESLint plugin to enforce newlines in ES6 object pattern",
   "main": "lib/index.js",
   "author": {
