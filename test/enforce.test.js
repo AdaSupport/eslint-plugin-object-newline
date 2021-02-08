@@ -103,6 +103,36 @@ const f = ({
         items: 3,
       }],
     },
+    {
+      code: `
+    const { // AAA
+      z, // saa
+      b,
+      a, /// aaa
+    } = obj;
+`,
+      options: [{
+        items: 3,
+      }],
+    },
+    {
+      code: `
+    const {
+      a,
+      // b,
+      // C
+      /**
+       * Hello
+       */
+      b,
+      c,
+      d
+    } = obj;
+`,
+      options: [{
+        items: 3,
+      }],
+    },
   ],
 
   invalid: [
@@ -299,6 +329,27 @@ const f = ({
 `,
       options: [{
         items: 3,
+      }],
+      errors: [{ messageId: "limitLineCount" }],
+    },
+    {
+      code: `
+const {
+  a,
+  // Foo
+  b, c
+} = test;
+`,
+      output: `
+const {
+  a,
+  // Foo
+  b,
+  c,
+} = test;
+`,
+      options: [{
+        items: 2,
       }],
       errors: [{ messageId: "limitLineCount" }],
     },
