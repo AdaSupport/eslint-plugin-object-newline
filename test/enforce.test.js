@@ -383,5 +383,28 @@ const {
       }],
       errors: [{ messageId: "limitLineCount" }],
     },
+    {
+      code: `
+const f = () => {
+  return \`
+    \${({ parameter }) => "LongLongLongLongLongLongLongLongLong"}
+  \`
+}
+`,
+      output: `
+const f = () => {
+  return \`
+    \${({
+      parameter,
+    }) => "LongLongLongLongLongLongLongLongLong"}
+  \`
+}
+`,
+      options: [{
+        items: 2,
+        "max-len": 20,
+      }],
+      errors: [{ messageId: "mustSplitLong" }],
+    },
   ],
 });
