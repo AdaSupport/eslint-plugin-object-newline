@@ -151,6 +151,21 @@ const f = ({
         items: 3,
       }],
     },
+    {
+      code: `
+    const {
+      a: {
+        b,
+        c,
+        d,
+        e,
+      }
+    } = obj;
+`,
+      options: [{
+        items: 3,
+      }],
+    },
   ],
 
   invalid: [
@@ -412,6 +427,48 @@ const f = () => {
         "max-len": 20,
       }],
       errors: [{ messageId: "mustSplitLong" }],
+    },
+    {
+      code: `
+const {
+  // Aaa
+  a, b
+} = test;
+`,
+      output: `
+const {
+  // Aaa
+  a,
+  b,
+} = test;
+`,
+      options: [{
+        items: 1,
+      }],
+      errors: [{ messageId: "limitLineCount" }],
+    },
+    {
+      code: `
+const {
+  // Aaa
+  a: { b,c,d, e}
+} = test;
+`,
+      output: `
+const {
+  // Aaa
+  a: {
+    b,
+    c,
+    d,
+    e,
+  }
+} = test;
+`,
+      options: [{
+        items: 1,
+      }],
+      errors: [{ messageId: "mustSplitMany" }],
     },
   ],
 };
